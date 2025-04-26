@@ -15,7 +15,7 @@ const getDashboardData = async (req, res) => {
             { $group: { _id: null, total: { $sum: "$amount" } } },
         ]);
 
-        console.log('Total Income', { totalIncome, userId: isValidObjectId(userId) });
+        // console.log('Total Income', { totalIncome, userId: isValidObjectId(userId) });
 
         const totalExpense = await Expense.aggregate([
             { $match: { userId: userObjectId } },
@@ -81,7 +81,7 @@ const getDashboardData = async (req, res) => {
             recentTransactions: lastTransactions,
         });
     } catch (error) {
-        console.log('error ------>', error);
+        console.error('error ------>', error);
         res.status(500).json({ message: "Server Error", error });
     }
 }
